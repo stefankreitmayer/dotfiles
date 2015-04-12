@@ -10,9 +10,14 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'tpope/vim-surround'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 filetype plugin indent on    " required
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""" VIM OPTIONS
+set colorcolumn=81
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""" KEY MAPPINGS
 let mapleader = ","
