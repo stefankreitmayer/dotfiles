@@ -8,12 +8,17 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
 Plugin 'flazz/vim-colorschemes'
 Plugin 'kien/ctrlp.vim'
 
 Plugin 'tpope/vim-surround'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-unimpaired'
 
 call vundle#end()
 filetype plugin indent on    " req vim
