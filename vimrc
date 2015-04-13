@@ -25,6 +25,7 @@ filetype plugin indent on    " req vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""" VIM OPTIONS
 colorscheme jellybeans
+set number
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""" HIGHLIGHTING
 colorscheme jellybeans
