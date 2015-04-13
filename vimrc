@@ -8,16 +8,29 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'flazz/vim-colorschemes'
 
 Plugin 'tpope/vim-surround'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
-filetype plugin indent on    " required
+filetype plugin indent on    " req vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""" VIM OPTIONS
-set colorcolumn=81
+colorscheme jellybeans
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""" HIGHLIGHTING
+colorscheme jellybeans
+let g:jellybeans_overrides = {
+			\  'Cursor': { 'guibg': 'ff00ee', 'guifg': '000000' },
+			\  'Search': { 'guifg': '00ffff', 'attr': 'underline' },
+\}
+
+syntax on
+
+set number
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""" KEY MAPPINGS
 let mapleader = ","
