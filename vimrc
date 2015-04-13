@@ -162,3 +162,136 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NAVIGATE WINDOWS AND BUFFERS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Close all other windows, open a vertical split, and open this file's test
+" alternate in it.
+nnoremap <leader>f :call FocusOnFile()<cr>
+function! FocusOnFile()
+  tabnew %
+  normal! v
+  normal! l
+  call OpenTestAlternate()
+  normal! h
+endfunction
+
+" split window and reset to last
+nnoremap vv <c-w>v<c-w>h<c-^>
+
+nnoremap tt :call SplitWithTest()<cr>
+function! SplitWithTest()
+  let current_file = expand("%")
+  let in_spec = match(current_file, '^spec/') != -1
+  normal! v
+  if in_spec
+    normal! h
+    call OpenTestAlternate()
+    normal! l
+  else
+    call OpenTestAlternate()
+  endif
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SWITCH BETWEEN TEST AND PRODUCTION CODE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! OpenTestAlternate()
+  let new_file = AlternateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+function! AlternateForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
+  if going_to_spec
+    let new_file = substitute(new_file, '\v^(app|lib)/', '', '')    " use very magic option \v => don't have to escape \( \) \|
+    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', '', '')
+    if in_app
+        let new_file = 'app/' . new_file
+    else
+        let new_file = 'lib/' . new_file
+    endif
+  endif
+  return new_file
+endfunction
+nnoremap <leader>. :call OpenTestAlternate()<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RUN TEST FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+    if in_test_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file .  command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+function! SetTestFile()
+    "     Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    if expand("%") != ""
+        :w
+    end
+
+    let cmd = "rake"
+
+    if match(a:filename, '\.feature$') != -1
+        let cmd = "cucumber -r ./features/ " . a:filename
+    elseif match(a:filename, '_spec\.rb') != -1
+        let cmd = "rspec --color " .  a:filename
+    end
+
+    if filereadable("Gemfile")
+        let cmd = "bundle exec " . cmd
+    end
+    let t:grb_last_test_command = cmd
+    execute "!clear && echo " . cmd " && " . cmd
+endfunction
+
+function! RunLastTestCommand()
+    if expand("%") != ""
+        :w
+    end
+    if exists("t:grb_last_test_command") == 1
+        execute "!clear && echo " . t:grb_last_test_command . " && " . t:grb_last_test_command
+    endif
+endfunction
+nnoremap <Leader>c :call RunTestFile()<CR>
+nnoremap <Leader>n :call RunNearestTest()<CR>
+nnoremap <Leader>a :call RunTests('')<CR>
+nnoremap <leader>l :call RunLastTestCommand()<CR>
+
+:nohl
