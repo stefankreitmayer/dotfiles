@@ -96,3 +96,45 @@ inoremap UU <esc>u
 
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" HANDLE WHITESPACE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraLines ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+augroup vimrc
+    autocmd!
+    autocmd FileType ruby,haml,eruby,yaml,sass,scss,css,javascript,cucumber,nginx
+        \ setlocal shiftwidth=2 |
+        \ setlocal softtabstop=2 |
+        \ setlocal tabstop=2
+
+    autocmd BufNewFile, BufRead *.json set ft=javascript
+    autocmd BufNewFile, BufRead *.md set ft=text
+    autocmd BufReadPost nginx.conf set ft=nginx
+    autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+    autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
+
+    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
+        \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+    " Jump to last cursor position unless it's invalid or in an event handler
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \ exe "normal g`\"" |
+        \ endif
+augroup end
+
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfunction
+
