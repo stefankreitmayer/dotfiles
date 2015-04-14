@@ -54,6 +54,8 @@ alias glp="git log --oneline --graph --decorate --all -p"
 alias gaa="git add -A ."
 alias gap="git add -p"
 
+alias sr='screen -r'
+
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 
 eval "$(rbenv init -)"
