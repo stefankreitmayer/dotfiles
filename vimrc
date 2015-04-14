@@ -20,6 +20,7 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-rails'
 
 call vundle#end()
 filetype plugin indent on    " req vim
