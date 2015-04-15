@@ -45,6 +45,7 @@ set hlsearch                       " highlight all search results
 set number                         " show absolute line numbers
 set colorcolumn=81                 " line width delimiter
 set showtabline=2                  " always have tab line
+set laststatus=2                   " always have status line
 set statusline=%f\ %m%r%y%=%3l,%2c
 " set list                           " show symbols for <eol> and <tab>
 " set listchars=tab:▸\ ,eol:¬        " set symbols for <eol> and <tab>
