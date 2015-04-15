@@ -162,6 +162,15 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
+function! IndentBuffer()
+    normal! my
+    normal! gg=G
+    normal! `y
+    normal! zz
+endfunction
+
+nnoremap <leader>= :call IndentBuffer()<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NAVIGATE WINDOWS AND BUFFERS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
