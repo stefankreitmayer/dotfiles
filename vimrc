@@ -182,64 +182,79 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Close all other windows, open a vertical split, and open this file's test
-" alternate in it.
-nnoremap <leader>f :call FocusOnFile()<cr>
-function! FocusOnFile()
-    tabnew %
-    normal! v
-    normal! l
-    call OpenTestAlternate()
-    normal! h
-endfunction
-
 " split window and reset to last
 nnoremap vv <c-w>v<c-w>h<c-^>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JUXTAPOSE TEST AND PRODUCTION CODE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 nnoremap tt :call SplitWithTest()<cr>
 function! SplitWithTest()
-    let current_file = expand("%")
-    let in_spec = match(current_file, '^spec/') != -1
+    let filename = expand("%")
+    let in_rspec_spec = match(filename, '^spec/') != -1
+    let in_cucumber_feature = match(filename, '\.feature$') != -1
+    let in_cucumber_step_definition = match(filename, '^features/step_definitions/.*\.rb') != -1
+    let in_ruby = match(filename, '\.e\?rb$') != -1
+    if in_rspec_spec
+        call OpenInLeftSplit(PathToImplementation(filename))
+    elseif in_cucumber_feature
+        call OpenInLeftSplit(PathToCucumberStepDefinition(filename))
+    elseif in_cucumber_step_definition
+        call OpenInRightSplit(PathToCucumberFeature(filename))
+    elseif in_ruby
+        call OpenInRightSplit(PathToRspec(filename))
+    endif
+endfunction
+
+function! PathToImplementation(test_path)
+    let new_path = a:test_path
+    let in_app = match(new_path, '/controllers/\|/models/\|/helpers/\|/mailers/\|/views/')
+    let new_path = substitute(new_path, '_spec\.rb$', '.rb', '')
+    let new_path = substitute(new_path, '^spec/', '', '')
+    if in_app
+        let new_path = 'app/' . new_path
+    else
+        let new_path = 'lib/' . new_path
+    endif
+    return new_path
+endfunction
+
+function! PathToRspec(implementation_path)
+    let new_path = a:implementation_path
+    let new_path = substitute(new_path, '\v^(app|lib)/', '', '')
+    let new_path = substitute(new_path, '\.e\?rb$', '_spec.rb', '')
+    let new_path = 'spec/' . new_path
+    return new_path
+endfunction
+
+function! PathToCucumberFeature(stepdefs_path)
+    let new_path = a:stepdefs_path
+    let new_path = substitute(new_path, '.*/', '', 'g')
+    let new_path = substitute(new_path, '\.rb$', '.feature', '')
+    let new_path = 'features/' . new_path
+    return new_path
+endfunction
+
+function! PathToCucumberStepDefinition(feature_path)
+    let new_path = a:feature_path
+    let new_path = substitute(new_path, '.*/', '', 'g')
+    let new_path = substitute(new_path, '\.feature$', '.rb', '')
+    let new_path = 'features/step_definitions/' . new_path
+    return new_path
+endfunction
+
+function! OpenInLeftSplit(filename)
     normal! v
-    if in_spec
-        normal! h
-        call OpenTestAlternate()
-        normal! l
-    else
-        call OpenTestAlternate()
-    endif
+    normal! h
+    exec ':e ' . a:filename
 endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenTestAlternate()
-    let new_file = AlternateForCurrentFile()
-    exec ':e ' . new_file
+function! OpenInRightSplit(filename)
+    normal! v
+    normal! l
+    exec ':e ' . a:filename
 endfunction
-function! AlternateForCurrentFile()
-    let current_file = expand("%")
-    let new_file = current_file
-    let in_spec = match(current_file, '^spec/') != -1
-    let going_to_spec = !in_spec
-    let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
-    if going_to_spec
-        let new_file = substitute(new_file, '\v^(app|lib)/', '', '')    " use very magic option \v => don't have to escape \( \) \|
-        let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
-        let new_file = 'spec/' . new_file
-    else
-        let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-        let new_file = substitute(new_file, '^spec/', '', '')
-        if in_app
-            let new_file = 'app/' . new_file
-        else
-            let new_file = 'lib/' . new_file
-        endif
-    endif
-    return new_file
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUN TEST FILE
