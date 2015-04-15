@@ -27,9 +27,9 @@ filetype plugin indent on    " req vim
 
 colorscheme jellybeans
 let g:jellybeans_overrides = {
-			\  'Cursor': { 'guibg': 'ff00ee', 'guifg': '000000' },
-			\  'Search': { 'guifg': '00ffff', 'attr': 'underline' },
-\}
+            \  'Cursor': { 'guibg': 'ff00ee', 'guifg': '000000' },
+            \  'Search': { 'guifg': '00ffff', 'attr': 'underline' },
+            \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM OPTIONS
@@ -135,9 +135,9 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 augroup vimrc
     autocmd!
     autocmd FileType ruby,haml,eruby,yaml,sass,scss,css,javascript,cucumber,nginx
-        \ setlocal shiftwidth=2 |
-        \ setlocal softtabstop=2 |
-        \ setlocal tabstop=2
+                \ setlocal shiftwidth=2 |
+                \ setlocal softtabstop=2 |
+                \ setlocal tabstop=2
 
     autocmd BufNewFile, BufRead *.json set ft=javascript
     autocmd BufNewFile, BufRead *.md set ft=text
@@ -146,13 +146,13 @@ augroup vimrc
     autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 
     autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
-        \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+                \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \ exe "normal g`\"" |
-        \ endif
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \ exe "normal g`\"" |
+                \ endif
 augroup end
 
 function! <SID>StripTrailingWhitespaces()
@@ -185,11 +185,11 @@ nnoremap <C-l> <C-w>l
 " alternate in it.
 nnoremap <leader>f :call FocusOnFile()<cr>
 function! FocusOnFile()
-  tabnew %
-  normal! v
-  normal! l
-  call OpenTestAlternate()
-  normal! h
+    tabnew %
+    normal! v
+    normal! l
+    call OpenTestAlternate()
+    normal! h
 endfunction
 
 " split window and reset to last
@@ -197,45 +197,45 @@ nnoremap vv <c-w>v<c-w>h<c-^>
 
 nnoremap tt :call SplitWithTest()<cr>
 function! SplitWithTest()
-  let current_file = expand("%")
-  let in_spec = match(current_file, '^spec/') != -1
-  normal! v
-  if in_spec
-    normal! h
-    call OpenTestAlternate()
-    normal! l
-  else
-    call OpenTestAlternate()
-  endif
+    let current_file = expand("%")
+    let in_spec = match(current_file, '^spec/') != -1
+    normal! v
+    if in_spec
+        normal! h
+        call OpenTestAlternate()
+        normal! l
+    else
+        call OpenTestAlternate()
+    endif
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
+    let new_file = AlternateForCurrentFile()
+    exec ':e ' . new_file
 endfunction
 function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
-  if going_to_spec
-    let new_file = substitute(new_file, '\v^(app|lib)/', '', '')    " use very magic option \v => don't have to escape \( \) \|
-    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-        let new_file = 'app/' . new_file
+    let current_file = expand("%")
+    let new_file = current_file
+    let in_spec = match(current_file, '^spec/') != -1
+    let going_to_spec = !in_spec
+    let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
+    if going_to_spec
+        let new_file = substitute(new_file, '\v^(app|lib)/', '', '')    " use very magic option \v => don't have to escape \( \) \|
+        let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+        let new_file = 'spec/' . new_file
     else
-        let new_file = 'lib/' . new_file
+        let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+        let new_file = substitute(new_file, '^spec/', '', '')
+        if in_app
+            let new_file = 'app/' . new_file
+        else
+            let new_file = 'lib/' . new_file
+        endif
     endif
-  endif
-  return new_file
+    return new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
@@ -298,6 +298,7 @@ function! RunLastTestCommand()
         execute "!clear && echo " . t:grb_last_test_command . " && " . t:grb_last_test_command
     endif
 endfunction
+
 nnoremap <Leader>c :call RunTestFile()<CR>
 nnoremap <Leader>n :call RunNearestTest()<CR>
 nnoremap <Leader>a :call RunTests('')<CR>
