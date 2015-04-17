@@ -55,6 +55,7 @@ alias gaa="git add -A ."
 alias gap="git add -p"
 
 alias sr='screen -r'
+alias goals='cd ~/.goals && vim -p *'
 
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 
