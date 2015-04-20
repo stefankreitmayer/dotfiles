@@ -105,6 +105,12 @@ nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>ez :tabe ~/.zshrc<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MY PERSONAL NOTES
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>et :tabe ~/.todo<cr>
+nnoremap <leader>er :tabe ~/.recap<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CREATE DIRECTORY
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>m :!mkdir -p %:p:h<cr>
