@@ -307,7 +307,7 @@ function! RunTests(filename)
     if match(a:filename, '\.feature$') != -1
         let cmd = "cucumber -r ./features/ " . a:filename
     elseif match(a:filename, '_spec\.rb') != -1
-        let cmd = "rspec --color " .  a:filename
+        let cmd = "rspec -I . --color " .  a:filename
     end
 
     if filereadable("Gemfile")
