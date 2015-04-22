@@ -256,12 +256,14 @@ function! PathToCucumberStepDefinition(feature_path)
 endfunction
 
 function! OpenInLeftSplit(filename)
+    :only
     normal! v
     normal! h
     exec ':e ' . a:filename
 endfunction
 
 function! OpenInRightSplit(filename)
+    :only
     normal! v
     normal! l
     exec ':e ' . a:filename
