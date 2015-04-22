@@ -242,7 +242,7 @@ endfunction
 function! PathToCucumberFeature(stepdefs_path)
     let new_path = a:stepdefs_path
     let new_path = substitute(new_path, '.*/', '', 'g')
-    let new_path = substitute(new_path, '\.rb$', '.feature', '')
+    let new_path = substitute(new_path, '_steps\.rb$', '.feature', '')
     let new_path = 'features/' . new_path
     return new_path
 endfunction
@@ -250,7 +250,7 @@ endfunction
 function! PathToCucumberStepDefinition(feature_path)
     let new_path = a:feature_path
     let new_path = substitute(new_path, '.*/', '', 'g')
-    let new_path = substitute(new_path, '\.feature$', '.rb', '')
+    let new_path = substitute(new_path, '\.feature$', '_steps.rb', '')
     let new_path = 'features/step_definitions/' . new_path
     return new_path
 endfunction
