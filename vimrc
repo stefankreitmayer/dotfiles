@@ -279,23 +279,24 @@ function! RunTestFile(...)
         let command_suffix = ""
     endif
 
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
+    let filename = expand("%")
+    if IsTestFile(filename)
+        let t:grb_test_file=filename
+    elseif IsTestFile(PathToCucumberStepDefinition(filename))
+        let t:grb_test_file=PathToCucumberStepDefinition(filename)
     elseif !exists("t:grb_test_file")
         return
     end
     call RunTests(t:grb_test_file .  command_suffix)
 endfunction
 
+function! IsTestFile(filename)
+    return match(a:filename, '\(.feature\|_spec.rb\)$') != -1
+endfunction
+
 function! RunNearestTest()
     let spec_line_number = line('.')
     call RunTestFile(":" . spec_line_number)
-endfunction
-
-function! SetTestFile()
-    "     Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
 endfunction
 
 function! RunTests(filename)
