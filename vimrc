@@ -96,6 +96,7 @@ inoremap UU <esc>u
 
 nnoremap <cr> :nohlsearch<cr>
 
+noremap <C-p> :CtrlPMixed<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CONFIG FILES
