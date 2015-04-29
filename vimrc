@@ -56,9 +56,9 @@ set wildmenu                       " show menu of complete option
 set autoindent
 set backspace=indent,eol,start     " allow backspace over eol etc.
 set expandtab                      " use n times <space> instead of <tab>
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4                      " spaces per tab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2                      " spaces per tab
 
 """ LOAD / SAVE / UNDO
 set autoread                       " auto reload when file changes
