@@ -206,7 +206,7 @@ function! SplitWithTest()
   let filename = expand("%")
   let in_rspec_spec = match(filename, '^spec/') != -1
   let in_cucumber_feature = match(filename, '\.feature$') != -1
-  let in_cucumber_step_definition = match(filename, '^features/step_definitions/.*\.rb') != -1
+  let in_cucumber_step_definition = match(filename, '^features/step_definitions/.*_steps\.rb') != -1
   let in_ruby = match(filename, '\.e\?rb$') != -1
   if in_rspec_spec
     call OpenInLeftSplit(PathToImplementation(filename))
@@ -220,8 +220,8 @@ function! SplitWithTest()
 endfunction
 
 function! PathToImplementation(test_path)
+  let in_app = match(a:test_path, '/controllers/\|/models/\|/helpers/\|/mailers/\|/views/') != -1
   let new_path = a:test_path
-  let in_app = match(new_path, '/controllers/\|/models/\|/helpers/\|/mailers/\|/views/')
   let new_path = substitute(new_path, '_spec\.rb$', '.rb', '')
   let new_path = substitute(new_path, '^spec/', '', '')
   if in_app
