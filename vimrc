@@ -13,6 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'flazz/vim-colorschemes'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
 
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
@@ -30,6 +31,13 @@ let g:jellybeans_overrides = {
       \  'Cursor': { 'guibg': 'ff00ee', 'guifg': '000000' },
       \  'Search': { 'guifg': '00ffff', 'attr': 'underline' },
       \}
+
+" use ag if available, instead of ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+  " let g:ctrlp_user_command = 'ag %s -l --no-color -g ""'
+  let g:ctrlp_user_command = 'ag %s -l -g ""'
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM OPTIONS
@@ -91,7 +99,6 @@ set splitright                     " vsplit opens new window to the right
 let mapleader = ","
 
 inoremap jj <esc>
-inoremap kk <esc>
 inoremap UU <esc>u
 
 nnoremap <cr> :nohlsearch<cr>
@@ -334,5 +341,6 @@ nnoremap <Leader>c :call RunTestFile()<CR>
 nnoremap <Leader>n :call RunNearestTest()<CR>
 nnoremap <Leader>a :call RunTests('')<CR>
 nnoremap <leader>l :call RunLastTestCommand()<CR>
+nnoremap <leader>x :w \| !ruby %<CR>
 
 :nohl

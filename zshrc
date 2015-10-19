@@ -59,4 +59,6 @@ alias goals='cd ~/.goals && vim -p *'
 
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 
+function p() {cd $(find projects -maxdepth 3 -type d | selecta)}
+
 eval "$(rbenv init -)"
