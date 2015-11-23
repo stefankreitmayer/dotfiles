@@ -23,6 +23,16 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-rails'
 
+" Do these actually improve indentation?
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
+
+Plugin 'pangloss/vim-javascript'
+
+
+Plugin 'janko-m/vim-test'
+Plugin 'bodymindarts/vim-twitch'
+
 call vundle#end()
 filetype plugin indent on    " req vim
 
@@ -124,11 +134,17 @@ nnoremap <leader>er :tabe ~/.recap<cr>
 nnoremap <leader>m :!mkdir -p %:p:h<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RUN RSPEC
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>s :w<cr>:!rspec -c<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUN CURRENT RUBY FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>r :w<cr>:!ruby %<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
@@ -204,143 +220,25 @@ nnoremap <C-l> <C-w>l
 " split window and reset to last
 nnoremap vv <c-w>v<c-w>h<c-^>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" JUXTAPOSE TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>t :Twitch<CR>
+nnoremap <leader>vt :VTwitch<CR>
 
-nnoremap tt :call SplitWithTest()<cr>
-function! SplitWithTest()
-  let filename = expand("%")
-  let in_rspec_spec = match(filename, '^spec/') != -1
-  let in_cucumber_feature = match(filename, '\.feature$') != -1
-  let in_cucumber_step_definition = match(filename, '^features/step_definitions/.*_steps\.rb') != -1
-  let in_ruby = match(filename, '\.e\?rb$') != -1
-  if in_rspec_spec
-    call OpenInLeftSplit(PathToImplementation(filename))
-  elseif in_cucumber_feature
-    call OpenInLeftSplit(PathToCucumberStepDefinition(filename))
-  elseif in_cucumber_step_definition
-    call OpenInRightSplit(PathToCucumberFeature(filename))
-  elseif in_ruby
-    call OpenInRightSplit(PathToRspec(filename))
-  endif
-endfunction
 
-function! PathToImplementation(test_path)
-  let in_app = match(a:test_path, '/controllers/\|/models/\|/helpers/\|/mailers/\|/views/') != -1
-  let new_path = a:test_path
-  let new_path = substitute(new_path, '_spec\.rb$', '.rb', '')
-  let new_path = substitute(new_path, '^spec/', '', '')
-  if in_app
-    let new_path = 'app/' . new_path
-  else
-    let new_path = 'lib/' . new_path
-  endif
-  return new_path
-endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configure Plugin 'janko-m/vim-test'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let test#ruby#rspec#options = {
+      \ 'nearest': '-c --backtrace',
+      \ 'file':    '-c --format documentation',
+      \ 'suite':   '-c --tag ~slow',
+      \}
+nnoremap <Leader>c :TestFile<CR>
+nnoremap <Leader>n :TestNearest<CR>
+nnoremap <Leader>a :TestSuite<CR>
+nnoremap <leader>l :TestLast<CR>
 
-function! PathToRspec(implementation_path)
-  let new_path = a:implementation_path
-  let new_path = substitute(new_path, '\v^(app|lib)/', '', '')
-  let new_path = substitute(new_path, '\.e\?rb$', '_spec.rb', '')
-  let new_path = 'spec/' . new_path
-  return new_path
-endfunction
-
-function! PathToCucumberFeature(stepdefs_path)
-  let new_path = a:stepdefs_path
-  let new_path = substitute(new_path, '.*/', '', 'g')
-  let new_path = substitute(new_path, '_steps\.rb$', '.feature', '')
-  let new_path = 'features/' . new_path
-  return new_path
-endfunction
-
-function! PathToCucumberStepDefinition(feature_path)
-  let new_path = a:feature_path
-  let new_path = substitute(new_path, '.*/', '', 'g')
-  let new_path = substitute(new_path, '\.feature$', '_steps.rb', '')
-  let new_path = 'features/step_definitions/' . new_path
-  return new_path
-endfunction
-
-function! OpenInLeftSplit(filename)
-  :only
-  normal! v
-  normal! h
-  exec ':e ' . a:filename
-endfunction
-
-function! OpenInRightSplit(filename)
-  :only
-  normal! v
-  normal! l
-  exec ':e ' . a:filename
-endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUN TEST FILE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RunTestFile(...)
-  if a:0
-    let command_suffix = a:1
-  else
-    let command_suffix = ""
-  endif
-
-  let filename = expand("%")
-  if IsTestFile(filename)
-    let t:grb_test_file=filename
-  elseif IsTestFile(PathToCucumberStepDefinition(filename))
-    let t:grb_test_file=PathToCucumberStepDefinition(filename)
-  elseif !exists("t:grb_test_file")
-    return
-  end
-  call RunTests(t:grb_test_file .  command_suffix)
-endfunction
-
-function! IsTestFile(filename)
-  return match(a:filename, '\(.feature\|_spec.rb\)$') != -1
-endfunction
-
-function! RunNearestTest()
-  let spec_line_number = line('.')
-  call RunTestFile(":" . spec_line_number)
-endfunction
-
-function! RunTests(filename)
-  " Write the file and run tests for the given filename
-  if expand("%") != ""
-    :w
-  end
-
-  let cmd = "rake"
-
-  if match(a:filename, '\.feature$') != -1
-    let cmd = "cucumber -r ./features/ " . a:filename
-  elseif match(a:filename, '_spec\.rb') != -1
-    let cmd = "rspec -I . --color " .  a:filename
-  end
-
-  if filereadable("Gemfile")
-    let cmd = "bundle exec " . cmd
-  end
-  let t:grb_last_test_command = cmd
-  execute "!clear && echo " . cmd " && " . cmd
-endfunction
-
-function! RunLastTestCommand()
-  if expand("%") != ""
-    :w
-  end
-  if exists("t:grb_last_test_command") == 1
-    execute "!clear && echo " . t:grb_last_test_command . " && " . t:grb_last_test_command
-  endif
-endfunction
-
-nnoremap <Leader>c :call RunTestFile()<CR>
-nnoremap <Leader>n :call RunNearestTest()<CR>
-nnoremap <Leader>a :call RunTests('')<CR>
-nnoremap <leader>l :call RunLastTestCommand()<CR>
 nnoremap <leader>x :w \| !ruby %<CR>
+nnoremap <leader>j :w\|!./jake.sh<cr>
+nnoremap <leader>b :w\|!./jake.sh build<cr>
 
 :nohl
