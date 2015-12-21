@@ -24,17 +24,20 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-rails'
 
 " Do these actually improve indentation?
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
+" Plugin 'maksimr/vim-jsbeautify'
+" Plugin 'einars/js-beautify'
 
-Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript' "req vim-jsx
 
 
 Plugin 'janko-m/vim-test'
 Plugin 'bodymindarts/vim-twitch'
 
+Bundle 'mxw/vim-jsx'
+
 call vundle#end()
 filetype plugin indent on    " req vim
+
 
 colorscheme jellybeans
 let g:jellybeans_overrides = {
@@ -198,6 +201,7 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
+
 function! IndentBuffer()
   normal! my
   normal! gg=G
@@ -221,7 +225,7 @@ nnoremap <C-l> <C-w>l
 nnoremap vv <c-w>v<c-w>h<c-^>
 
 nnoremap <leader>t :Twitch<CR>
-nnoremap <leader>vt :VTwitch<CR>
+nnoremap <leader>vv <c-w>o :VTwitch<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
