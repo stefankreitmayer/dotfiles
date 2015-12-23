@@ -28,6 +28,7 @@ Plugin 'tpope/vim-rails'
 " Plugin 'einars/js-beautify'
 
 Plugin 'pangloss/vim-javascript' "req vim-jsx
+Plugin 'lambdatoast/elm.vim'
 
 
 Plugin 'janko-m/vim-test'
