@@ -34,8 +34,6 @@ Plugin 'lambdatoast/elm.vim'
 Plugin 'janko-m/vim-test'
 Plugin 'bodymindarts/vim-twitch'
 
-Bundle 'mxw/vim-jsx'
-
 call vundle#end()
 filetype plugin indent on    " req vim
 
