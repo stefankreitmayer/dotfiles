@@ -12,7 +12,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'flazz/vim-colorschemes'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 
 Plugin 'tpope/vim-surround'
@@ -49,6 +49,7 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
   " let g:ctrlp_user_command = 'ag %s -l --no-color -g ""'
   let g:ctrlp_user_command = 'ag %s -l -g ""'
+  let g:ctrlp_working_path_mode = 'c'
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -241,7 +242,6 @@ nnoremap <Leader>a :TestSuite<CR>
 nnoremap <leader>l :TestLast<CR>
 
 nnoremap <leader>x :w \| !ruby %<CR>
-nnoremap <leader>j :w\|!./jake.sh<cr>
-nnoremap <leader>b :w\|!./jake.sh build<cr>
+nnoremap <leader>b :w\|!./build.sh<cr>
 
 :nohl
