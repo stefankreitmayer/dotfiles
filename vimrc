@@ -30,6 +30,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript' "req vim-jsx
 Plugin 'lambdatoast/elm.vim'
 
+Plugin 'elixir-lang/vim-elixir'
 
 Plugin 'janko-m/vim-test'
 Plugin 'bodymindarts/vim-twitch'
@@ -49,7 +50,7 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
   " let g:ctrlp_user_command = 'ag %s -l --no-color -g ""'
   let g:ctrlp_user_command = 'ag %s -l -g ""'
-  let g:ctrlp_working_path_mode = 'c'
+  let g:ctrlp_working_path_mode = ''
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
