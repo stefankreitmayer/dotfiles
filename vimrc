@@ -23,17 +23,13 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-rails'
 
-" Do these actually improve indentation?
-" Plugin 'maksimr/vim-jsbeautify'
-" Plugin 'einars/js-beautify'
-
-Plugin 'pangloss/vim-javascript' "req vim-jsx
 Plugin 'lambdatoast/elm.vim'
 
 Plugin 'elixir-lang/vim-elixir'
 
 Plugin 'janko-m/vim-test'
 Plugin 'bodymindarts/vim-twitch'
+Plugin 'skalnik/vim-vroom'
 
 call vundle#end()
 filetype plugin indent on    " req vim
@@ -147,7 +143,6 @@ nnoremap <leader>s :w<cr>:!rspec -c<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>r :w<cr>:!ruby %<cr>
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,7 +237,6 @@ nnoremap <Leader>n :TestNearest<CR>
 nnoremap <Leader>a :TestSuite<CR>
 nnoremap <leader>l :TestLast<CR>
 
-nnoremap <leader>x :w \| !ruby %<CR>
 nnoremap <leader>b :w\|!./build.sh<cr>
 
 :nohl
