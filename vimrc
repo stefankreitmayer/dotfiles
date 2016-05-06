@@ -126,7 +126,7 @@ nnoremap <leader>ez :tabe ~/.zshrc<cr>
 " MY PERSONAL NOTES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>et :tabe ~/.todo<cr>
-nnoremap <leader>er :tabe ~/.recap<cr>
+nnoremap <leader>ei :tabe issues.txt<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CREATE DIRECTORY
