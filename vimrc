@@ -31,6 +31,8 @@ Plugin 'janko-m/vim-test'
 Plugin 'bodymindarts/vim-twitch'
 Plugin 'skalnik/vim-vroom'
 
+Plugin 'vimwiki/vimwiki'
+
 call vundle#end()
 filetype plugin indent on    " req vim
 
@@ -102,6 +104,7 @@ set tags+=.git/tags,./.tags
 set splitbelow                     " split opens new window below
 set splitright                     " vsplit opens new window to the right
 
+set clipboard=unnamed
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS
@@ -121,12 +124,6 @@ noremap <C-p> :CtrlPMixed<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>ez :tabe ~/.zshrc<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MY PERSONAL NOTES
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>et :tabe ~/.todo<cr>
-nnoremap <leader>ei :tabe issues.txt<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CREATE DIRECTORY

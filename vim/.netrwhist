@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/stefan/learn_2016/04_phoenix/projects/hello_phoenix/web/controllers'
-let g:netrw_dirhist_2='/Users/stefan/skills'
-let g:netrw_dirhist_3='/Users/stefan/learn_2016/01_elm/exercises/11_mailbox_1'
-let g:netrw_dirhist_4='/Users/stefan/learn_2016/01_elm/exercises/05_pong_from_example'
-let g:netrw_dirhist_5='/Users/stefan/kammerelektronik/.git'
-let g:netrw_dirhist_6='/Users/stefan/kammerelektronik_resources'
