@@ -135,11 +135,6 @@ nnoremap <leader>m :!mkdir -p %:p:h<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>s :w<cr>:!rspec -c<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUN CURRENT RUBY FILE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>r :w<cr>:!ruby %<cr>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -215,10 +210,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " split window and reset to last
-nnoremap vv <c-w>v<c-w>h<c-^>
+" nnoremap vv <c-w>v<c-w>h<c-^>
 
 nnoremap <leader>t :Twitch<CR>
-nnoremap <leader>vv <c-w>o :VTwitch<CR>
+" nnoremap <leader>vv <c-w>o :VTwitch<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -234,6 +229,7 @@ nnoremap <Leader>n :TestNearest<CR>
 nnoremap <Leader>a :TestSuite<CR>
 nnoremap <leader>l :TestLast<CR>
 
-nnoremap <leader>b :w\|!./build.sh<cr>
+nnoremap <leader>b :w\|!sh build.sh<cr>
+nnoremap <leader>r :w\|!sh run-elm-tests.sh<cr>
 
 :nohl
