@@ -27,6 +27,8 @@ Plugin 'lambdatoast/elm.vim'
 
 Plugin 'elixir-lang/vim-elixir'
 
+Plugin 'kchmck/vim-coffee-script'
+
 Plugin 'janko-m/vim-test'
 Plugin 'bodymindarts/vim-twitch'
 Plugin 'skalnik/vim-vroom'
