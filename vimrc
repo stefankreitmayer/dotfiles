@@ -35,6 +35,9 @@ Plugin 'skalnik/vim-vroom'
 
 Plugin 'vimwiki/vimwiki'
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 call vundle#end()
 filetype plugin indent on    " req vim
 
@@ -52,6 +55,8 @@ if executable('ag')
   " let g:ctrlp_user_command = 'ag %s -l -g ""'
   " let g:ctrlp_working_path_mode = ''
 endif
+
+:let g:airline_theme='mygit'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM OPTIONS
