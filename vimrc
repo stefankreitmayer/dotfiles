@@ -45,10 +45,10 @@ let g:jellybeans_overrides = {
 
 " use ag if available, instead of ack
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep --depth 100'
   " let g:ctrlp_user_command = 'ag %s -l --no-color -g ""'
-  let g:ctrlp_user_command = 'ag %s -l -g ""'
-  let g:ctrlp_working_path_mode = ''
+  " let g:ctrlp_user_command = 'ag %s -l -g ""'
+  " let g:ctrlp_working_path_mode = ''
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -233,3 +233,10 @@ nnoremap <leader>b :w\|!sh build.sh<cr>
 nnoremap <leader>r :w\|!sh run-elm-tests.sh<cr>
 
 :nohl
+
+
+
+
+let g:ctrlp_max_files = 3000000
+let g:ctrlp_max_depth = 3000000
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:100'
