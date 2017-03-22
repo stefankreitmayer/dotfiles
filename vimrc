@@ -50,10 +50,18 @@ let g:jellybeans_overrides = {
 
 " use ag if available, instead of ack
 if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ackprg = 'ag --vimgrep --depth 100'
   " let g:ctrlp_user_command = 'ag %s -l --no-color -g ""'
-  " let g:ctrlp_user_command = 'ag %s -l -g ""'
+  let g:ctrlp_user_command = 'ag %s -l -g ""'
   " let g:ctrlp_working_path_mode = ''
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](\.git|tmp|public|coverage|vendor)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'some_bad_symbolic_links',
+    \ }
+  set wildignore+=*node_modules*
 endif
 
 :let g:airline_theme='mygit'
@@ -110,6 +118,7 @@ set tags+=.git/tags,./.tags
 """ WINDOWS
 set splitbelow                     " split opens new window below
 set splitright                     " vsplit opens new window to the right
+
 
 set clipboard=unnamed
 
@@ -238,6 +247,12 @@ nnoremap <leader>l :TestLast<CR>
 
 nnoremap <leader>b :w\|!sh build.sh<cr>
 nnoremap <leader>r :w\|!sh run-elm-tests.sh<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Convert from => to new hash syntax (Ruby)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>h :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<cr>
+
 
 :nohl
 
