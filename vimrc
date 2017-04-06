@@ -22,12 +22,12 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-rails'
+Plugin 'kchmck/vim-coffee-script'
+
 
 Plugin 'lambdatoast/elm.vim'
 
 Plugin 'elixir-lang/vim-elixir'
-
-Plugin 'kchmck/vim-coffee-script'
 
 Plugin 'janko-m/vim-test'
 Plugin 'bodymindarts/vim-twitch'
@@ -62,6 +62,7 @@ if executable('ag')
     \ 'link': 'some_bad_symbolic_links',
     \ }
   set wildignore+=*node_modules*
+  set wildignore+=*elm-stuff*
 endif
 
 :let g:airline_theme='mygit'
