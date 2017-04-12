@@ -108,7 +108,7 @@ alias 'slowinternet2=sudo ipfw add 1 pipe 1 src-port 80'
 alias 'fastinternet=sudo ipfw delete 1'
 alias ll="ls -la"
 
-alias vim="/usr/local/Cellar/vim/8.0.0032/bin/vim"
+alias vim="/usr/local/Cellar/vim/8.0.0559/bin/vim"
 alias vi="vim"
 
 alias g="git"
@@ -134,7 +134,7 @@ function p() {cd $(find projects -maxdepth 3 -type d | selecta)}
 
 
 # export PATH="/Users/stefan/.rbenv/shims:${PATH}"
-source "/usr/local/Cellar/rbenv/1.0.0/libexec/../completions/rbenv.zsh"
+source "/usr/local/Cellar/rbenv/1.1.0/libexec/../completions/rbenv.zsh"
 rbenv rehash 2>/dev/null
 rbenv() {
   typeset command

@@ -35,9 +35,6 @@ Plugin 'skalnik/vim-vroom'
 
 Plugin 'vimwiki/vimwiki'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
 call vundle#end()
 filetype plugin indent on    " req vim
 
