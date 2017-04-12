@@ -65,7 +65,8 @@ if executable('ag')
   set wildignore+=*elm-stuff*
 endif
 
-:let g:airline_theme='mygit'
+set wildignore+=*node_modules*
+set wildignore+=*elm-stuff*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM OPTIONS
@@ -253,6 +254,12 @@ nnoremap <leader>r :w\|!sh run-elm-tests.sh<cr>
 " Convert from => to new hash syntax (Ruby)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>h :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search for word under cursor
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>f yiw:tabe<cr>:Ack <C-r>0<cr>
+
 
 
 :nohl
