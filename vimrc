@@ -262,6 +262,11 @@ nnoremap <leader>f yiw:tabe<cr>:Ack <C-r>0<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>o $hhi, focus: true<esc><cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" sync vimwiki with github
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd VimLeave *.wiki :silent exec "!cd ~/vimwiki && git add -A . && git commit -m 'update' && git push"
+
 
 :nohl
 
