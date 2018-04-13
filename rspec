@@ -1,3 +1,0 @@
---require=~/.dotfiles/lib/vim_formatter.rb
---format VimFormatter --out .git/rspec.quickfix
---format progress
