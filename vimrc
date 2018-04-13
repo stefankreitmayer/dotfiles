@@ -23,6 +23,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-dispatch'
+Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'OmniSharp/omnisharp-vim'
 
