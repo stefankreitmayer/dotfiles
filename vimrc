@@ -25,8 +25,6 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-dispatch'
 Plugin 'nanotech/jellybeans.vim'
 
-Plugin 'OmniSharp/omnisharp-vim'
-
 Plugin 'lambdatoast/elm.vim'
 
 Plugin 'janko-m/vim-test'
@@ -36,7 +34,6 @@ Plugin 'vimwiki/vimwiki'
 
 call vundle#end()
 filetype plugin indent on    " req vim
-
 
 colorscheme jellybeans
 let g:jellybeans_overrides = {
