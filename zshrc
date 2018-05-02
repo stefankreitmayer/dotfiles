@@ -151,3 +151,4 @@ rbenv() {
   esac
 }
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
+export PATH="/Users/localadmin/anaconda2/bin:$PATH"
