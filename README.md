@@ -20,6 +20,12 @@ https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
 [Install Vundle](https://github.com/VundleVim/Vundle.vim)
 
+[Install OhMyZsh](https://github.com/robbyrussell/oh-my-zsh)
+
+In home directory:
+
 `ln dotfiles/vimrc .vimrc`
+
+`rm .zshrc`
 
 `ln dotfiles/zshrc .zshrc`
