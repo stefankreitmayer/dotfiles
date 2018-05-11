@@ -20,5 +20,6 @@ https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
 [Install Vundle](https://github.com/VundleVim/Vundle.vim)
 
-ln dotfiles/vimrc .vimrc
-ln dotfiles/zshrc .zshrc
+`ln dotfiles/vimrc .vimrc`
+
+`ln dotfiles/zshrc .zshrc`
