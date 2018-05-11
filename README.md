@@ -22,6 +22,7 @@ https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
 [Install OhMyZsh](https://github.com/robbyrussell/oh-my-zsh)
 
+
 In home directory:
 
 `ln dotfiles/vimrc .vimrc`
