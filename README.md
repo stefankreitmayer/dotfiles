@@ -14,6 +14,8 @@ Install homebrew
 
 `brew install tree`
 
+`brew install npm`
+
 `brew install vim` to use the system clipboard, see http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
 
 https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
