@@ -20,6 +20,8 @@ Install homebrew
 
 `brew install vim` to use the system clipboard, see http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
 
+`brew install heroku/brew/heroku`
+
 ### Vim, Zsh
 
 [Install Vundle](https://github.com/VundleVim/Vundle.vim)
