@@ -41,6 +41,8 @@ https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
 ### Rails
 
+#### As admin user
+
 `brew install rbenv`
 
 [Follow some but not all of these steps](https://gorails.com/setup/osx/10.13-high-sierra)
@@ -49,14 +51,16 @@ Given a rails project, go to its directory and install the ruby version it says 
 
 e.g. `rbenv install 2.2.7` or whatever
 
-#### For every ruby version
+##### For every ruby version
 
 `gem install bundler`
 
 `gem install rails`
 
-#### Running a rails app
+##### Running a rails app
 
 `bundle` or `bundle install`
+
+#### As non-admin user
 
 `rails s`
