@@ -49,12 +49,14 @@ Given a rails project, go to its directory and install the ruby version it says 
 
 e.g. `rbenv install 2.2.7` or whatever
 
-For every ruby version:
+#### For every ruby version
 
 `gem install bundler`
 
-To run a rails app
+`gem install rails`
 
-`bundle install` or `bundle`
+#### Running a rails app
+
+`bundle` or `bundle install`
 
 `rails s`
