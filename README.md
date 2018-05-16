@@ -63,4 +63,8 @@ e.g. `rbenv install 2.2.7` or whatever
 
 #### As non-admin user
 
+`rake db:create`
+
+`rake db:migrate`
+
 `rails s`
