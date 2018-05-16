@@ -1,5 +1,7 @@
 ## Install (on a new computer)
 
+### Brew
+
 Install homebrew
 
 `brew install git`
@@ -18,7 +20,7 @@ Install homebrew
 
 `brew install vim` to use the system clipboard, see http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
 
-https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+### Vim, Zsh
 
 [Install Vundle](https://github.com/VundleVim/Vundle.vim)
 
@@ -32,3 +34,27 @@ In home directory:
 `rm .zshrc`
 
 `ln dotfiles/zshrc .zshrc`
+
+### Github
+
+https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+
+### Rails
+
+`brew install rbenv`
+
+[Follow some but not all of these steps](https://gorails.com/setup/osx/10.13-high-sierra)
+
+Given a rails project, go to its directory and install the ruby version it says in the Gemfile or .ruby-version
+
+e.g. `rbenv install 2.2.7` or whatever
+
+For every ruby version:
+
+`gem install bundler`
+
+To run a rails app
+
+`bundle install` or `bundle`
+
+`rails s`
