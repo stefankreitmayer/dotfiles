@@ -28,7 +28,6 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'lambdatoast/elm.vim'
 
 Plugin 'janko-m/vim-test'
-Plugin 'bodymindarts/vim-twitch'
 
 Plugin 'vimwiki/vimwiki'
 
@@ -222,10 +221,6 @@ nnoremap <C-l> <C-w>l
 
 " split window and reset to last
 " nnoremap vv <c-w>v<c-w>h<c-^>
-
-nnoremap <leader>t :Twitch<CR>
-" nnoremap <leader>vv <c-w>o :VTwitch<CR>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configure Plugin 'janko-m/vim-test'
