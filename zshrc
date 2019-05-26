@@ -1,3 +1,5 @@
+ZSH_DISABLE_COMPFIX=true
+#
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/stefan/.oh-my-zsh
 
@@ -18,7 +20,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=200
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -152,3 +154,6 @@ rbenv() {
 }
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
 export PATH="/Users/localadmin/anaconda2/bin:$PATH"
+
+export BATCAVE_API_KEY='6d96aa4b-4e26-4bf6-beb6-6f7531e0859f' # Username: 5 - Password khqkj76FhU7 - API docs are at: https://bats.cetools.org/v1/docs
+source activate x5flaskheroku
