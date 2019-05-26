@@ -235,8 +235,9 @@ nnoremap <Leader>n :TestNearest<CR>
 nnoremap <Leader>a :TestSuite<CR>
 nnoremap <leader>l :TestLast<CR>
 
-nnoremap <leader>b :w\|!sh build.sh<cr>
-nnoremap <leader>r :w\|!sh run-elm-tests.sh<cr>
+" nnoremap <leader>b :w\|!sh build.sh<cr>
+nnoremap <leader>b :w\|!npm run build:js-dev<cr>
+nnoremap <leader>r :w\|!elm-test<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Convert from => to new hash syntax (Ruby)
