@@ -129,6 +129,7 @@ alias goals='cd ~/.goals && vim -p *'
 
 alias pdfconcat='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
+# ffmpeg -i ~/Library/Containers/com.apple.QuickTimePlayerX/Data/Library/Autosave\ Information/Unsaved\ QuickTime\ Player\ Document.qtpxcomposition/Screen\ Recording.mov -vf scale=1200:800 -filter:v "crop=2060:1606:0:396" -ss 3 -t 5  screen_recording_small.mov
 
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 
