@@ -153,8 +153,3 @@ rbenv() {
     command rbenv "$command" "$@";;
   esac
 }
-export PATH="/usr/local/opt/libxml2/bin:$PATH"
-export PATH="/Users/localadmin/anaconda2/bin:$PATH"
-
-export BATCAVE_API_KEY='6d96aa4b-4e26-4bf6-beb6-6f7531e0859f' # Username: 5 - Password khqkj76FhU7 - API docs are at: https://bats.cetools.org/v1/docs
-source activate x5flaskheroku
