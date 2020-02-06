@@ -23,7 +23,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-dispatch'
-Plugin 'nanotech/jellybeans.vim'
+" Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'lambdatoast/elm.vim'
 
@@ -34,11 +34,11 @@ Plugin 'vimwiki/vimwiki'
 call vundle#end()
 filetype plugin indent on    " req vim
 
-colorscheme jellybeans
-let g:jellybeans_overrides = {
-      \  'Cursor': { 'guibg': 'ff00ee', 'guifg': '000000' },
-      \  'Search': { 'guifg': '00ffff', 'attr': 'underline' },
-      \}
+" colorscheme jellybeans
+" let g:jellybeans_overrides = {
+"       \  'Cursor': { 'guibg': 'ff00ee', 'guifg': '000000' },
+"       \  'Search': { 'guifg': '00ffff', 'attr': 'underline' },
+"       \}
 
 " use ag if available, instead of ack
 if executable('ag')
