@@ -3,62 +3,41 @@ set nocompatible
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off "req vundle
-set rtp+=~/.vim/bundle/Vundle.vim "req vundle
+call plug#begin('~/.config/nvim/plugged')
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'gabesoft/vim-ags'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
 
-call vundle#begin()
+" Plug 'vim-ruby/vim-ruby'
+" Plug 'jparise/vim-graphql'
+" Plug 'docker/docker'
+" Plug 'preservim/nerdtree'
+call plug#end()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
 
-Plugin 'flazz/vim-colorschemes'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-dispatch'
-" Plugin 'nanotech/jellybeans.vim'
-
-Plugin 'lambdatoast/elm.vim'
-
-Plugin 'janko-m/vim-test'
-
-Plugin 'vimwiki/vimwiki'
-
-call vundle#end()
-filetype plugin indent on    " req vim
-
-" colorscheme jellybeans
-" let g:jellybeans_overrides = {
-"       \  'Cursor': { 'guibg': 'ff00ee', 'guifg': '000000' },
-"       \  'Search': { 'guifg': '00ffff', 'attr': 'underline' },
-"       \}
+colorscheme jellybeans
+let g:jellybeans_overrides = {
+      \  'Cursor': { 'guibg': 'ff00ee', 'guifg': '000000' },
+      \  'Search': { 'guifg': '00ffff', 'attr': 'underline' },
+      \}
 
 " use ag if available, instead of ack
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  " set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup
   let g:ackprg = 'ag --vimgrep --depth 100'
-  " let g:ctrlp_user_command = 'ag %s -l --no-color -g ""'
-  let g:ctrlp_user_command = 'ag %s -l -g ""'
-  " let g:ctrlp_working_path_mode = ''
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.git|tmp|public|coverage|vendor)$',
-    \ 'file': '\v\.(exe|so|dll)$',
-    \ 'link': 'some_bad_symbolic_links',
-    \ }
 endif
 
-set wildignore+=*node_modules*
-set wildignore+=*elm-stuff*
-set wildignore+=*elm-generated*
-set wildignore+=*build-artifacts*
+" set wildignore+=*node_modules*
+" set wildignore+=*elm-stuff*
+" set wildignore+=*elm-generated*
+" set wildignore+=*build-artifacts*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM OPTIONS
@@ -71,8 +50,8 @@ set cursorline                     " highlight line at cursor set hlsearch set i
 set hlsearch                       " highlight all search results
 
 """ EXTRA INFO
-set number                         " show absolute line numbers
-set colorcolumn=81                 " line width delimiter
+" set number                         " show absolute line numbers
+set colorcolumn=121                 " line width delimiter
 set showtabline=2                  " always have tab line
 set laststatus=2                   " always have status line
 set statusline=%f\ %m%r%y%=%3l,%2c
@@ -126,7 +105,7 @@ inoremap UU <esc>u
 
 nnoremap <cr> :nohlsearch<cr>
 
-noremap <C-p> :CtrlPMixed<cr>
+nnoremap <C-p> :<C-u>FZF<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CONFIG FILES
@@ -143,7 +122,7 @@ nnoremap <leader>m :!mkdir -p %:p:h<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUN RSPEC
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>s :w<cr>:!bundle exec rspec -c<cr>
+" nnoremap <leader>s :w<cr>:!bundle exec rspec -c<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME FILE
@@ -225,15 +204,15 @@ nnoremap <C-l> <C-w>l
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configure Plugin 'janko-m/vim-test'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let test#ruby#rspec#options = {
-      \ 'nearest': '-c --backtrace',
-      \ 'file':    '-c --format documentation',
-      \ 'suite':   '-c --tag ~slow',
-      \}
-nnoremap <Leader>c :TestFile<CR>
-nnoremap <Leader>n :TestNearest<CR>
-nnoremap <Leader>a :TestSuite<CR>
-nnoremap <leader>l :TestLast<CR>
+" let test#ruby#rspec#options = {
+"       \ 'nearest': '-c --backtrace',
+"       \ 'file':    '-c --format documentation',
+"       \ 'suite':   '-c --tag ~slow',
+"       \}
+" nnoremap <Leader>c :TestFile<CR>
+" nnoremap <Leader>n :TestNearest<CR>
+" nnoremap <Leader>a :TestSuite<CR>
+" nnoremap <leader>l :TestLast<CR>
 
 " nnoremap <leader>b :w\|!sh build.sh<cr>
 nnoremap <leader>b :w\|!npm run build:js-dev<cr>
@@ -247,10 +226,16 @@ nnoremap <leader>h :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Search for word under cursor
+" Ags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>f yiw:tabe<cr>:Ack <C-r>0<cr>
-
+" Search for the word under cursor
+nnoremap <Leader>f :Ags<Space><C-R>=expand('<cword>')<CR><CR>
+" Search for the visually selected text
+" vnoremap <Leader>s y:Ags<Space><C-R>='"' . escape(@", '"*?()[]{}.') . '"'<CR><CR>
+" Run Ags
+nnoremap <Leader>a :Ags<Space>
+" Quit Ags
+nnoremap <Leader><Leader>a :AgsQuit<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set focus: true on the current line. (Ruby/Guard)
@@ -260,14 +245,7 @@ nnoremap <leader>o $hhi, focus: true<esc><cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " sync vimwiki with github
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd VimLeave *.wiki :silent exec "!cd ~/vimwiki && git add -A . && git commit -m 'update' && git push"
+" autocmd VimLeave *.wiki :silent exec "!cd ~/vimwiki && git add -A . && git commit -m 'update' && git push"
 
 
 :nohl
-
-
-
-
-let g:ctrlp_max_files = 3000000
-let g:ctrlp_max_depth = 3000000
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:100'
