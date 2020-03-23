@@ -229,7 +229,7 @@ nnoremap <leader>h :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc<cr>
 " Ags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search for the word under cursor
-nnoremap <Leader>f :Ags<Space><C-R>=expand('<cword>')<CR><CR>
+nnoremap <Leader>f :Ags -C 0<Space><C-R>=expand('<cword>')<CR><CR>:sleep 300m<CR><CR>:resize 10<CR><CR>
 " Search for the visually selected text
 " vnoremap <Leader>s y:Ags<Space><C-R>='"' . escape(@", '"*?()[]{}.') . '"'<CR><CR>
 " Run Ags
@@ -243,9 +243,13 @@ nnoremap <Leader><Leader>a :AgsQuit<CR>
 nnoremap <leader>o $hhi, focus: true<esc><cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" sync vimwiki with github
+" silly stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autocmd VimLeave *.wiki :silent exec "!cd ~/vimwiki && git add -A . && git commit -m 'update' && git push"
-
+function! Eureka()
+  call s:X("StringDelimiter","ff00ff","","","Magenta","")
+  sleep 500m
+  call s:X("StringDelimiter","779955","","","DarkGreen","")
+endfunction
+map <leader>e :call Eureka()<cr>
 
 :nohl
