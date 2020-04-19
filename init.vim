@@ -35,6 +35,9 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep --depth 100'
 endif
 
+" https://github.com/junegunn/fzf.vim/issues/121
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 " set wildignore+=*node_modules*
 " set wildignore+=*elm-stuff*
 " set wildignore+=*elm-generated*
