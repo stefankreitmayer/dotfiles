@@ -13,6 +13,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
+Plug 'thoughtbot/vim-rspec'
 
 " Plug 'vim-ruby/vim-ruby'
 " Plug 'jparise/vim-graphql'
@@ -119,10 +120,6 @@ nnoremap <leader>ez :tabe ~/.zshrc<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>m :!mkdir -p %:p:h<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUN RSPEC
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nnoremap <leader>s :w<cr>:!bundle exec rspec -c<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME FILE
@@ -189,6 +186,14 @@ endfunction
 nnoremap <leader>= :call IndentBuffer()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-rspec
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" see https://github.com/thoughtbot/vim-rspec
+" no idea why the colors aren't working
+let g:rspec_command = "!bundle exec rspec --color -fd {spec}"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NAVIGATE WINDOWS AND BUFFERS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -201,23 +206,15 @@ nnoremap <C-l> <C-w>l
 " split window and reset to last
 " nnoremap vv <c-w>v<c-w>h<c-^>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Configure Plugin 'janko-m/vim-test'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let test#ruby#rspec#options = {
-"       \ 'nearest': '-c --backtrace',
-"       \ 'file':    '-c --format documentation',
-"       \ 'suite':   '-c --tag ~slow',
-"       \}
-" nnoremap <Leader>c :TestFile<CR>
-" nnoremap <Leader>n :TestNearest<CR>
-" nnoremap <Leader>a :TestSuite<CR>
-" nnoremap <leader>l :TestLast<CR>
-
 " nnoremap <leader>b :w\|!sh build.sh<cr>
 nnoremap <leader>b :w\|!npm run build:js-dev<cr>
-nnoremap <leader>r :w\|!elm-test<cr>
-nnoremap <leader>p :!python %<cr>
+nnoremap <leader>r :w\|!bundle exec rubocop %<cr>
+nnoremap <leader>R :w\|!bundle exec rubocop -a %<cr>
+map <Leader>T :call RunNearestSpec()<CR>
+map <Leader>t :call RunCurrentSpecFile()<CR>
+" nnoremap <leader>t :w\|!zsh -c 'bundle exec rspec --color -fd %'<cr>
+" nnoremap <leader>p :!python %<cr>
+nnoremap <leader>p Orequire 'pry'; binding.pry<esc>:w<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Convert from => to new hash syntax (Ruby)
