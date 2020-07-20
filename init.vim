@@ -14,6 +14,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
+Plug 'elixir-editors/vim-elixir'
 
 " Plug 'vim-ruby/vim-ruby'
 " Plug 'jparise/vim-graphql'
@@ -218,6 +219,7 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 " nnoremap <leader>t :w\|!zsh -c 'bundle exec rspec --color -fd %'<cr>
 " nnoremap <leader>p :!python %<cr>
 nnoremap <leader>p Orequire 'pry'; binding.pry<esc>:w<cr>
+nnoremap <leader>P Orequire IEx; IEx.pry<esc>:w<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Convert from => to new hash syntax (Ruby)
