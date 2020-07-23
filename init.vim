@@ -220,6 +220,7 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 " nnoremap <leader>p :!python %<cr>
 nnoremap <leader>p Orequire 'pry'; binding.pry<esc>:w<cr>
 nnoremap <leader>P Orequire IEx; IEx.pry<esc>:w<cr>
+nnoremap <leader>j Orequire 'json'; puts JSON.pretty_generate()<esc>:w<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Convert from => to new hash syntax (Ruby)
