@@ -18,22 +18,28 @@ Install homebrew
 
 `brew install npm`
 
-Install [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-
 `brew install heroku/brew/heroku`
 
-### Vim, Zsh
+### NeoVim
 
-[Install Plug](https://github.com/junegunn/vim-plug#neovim)
-
-[Install OhMyZsh](https://github.com/robbyrussell/oh-my-zsh)
-
+Install [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 In home directory:
 
-`mkdir -p .config/nvim`
+`mkdir -p .config/nvim/colors`
 
 `ln dotfiles/init.vim .config/nvim/init.vim`
+
+Download [jellybeans.vim](https://github.com/nanotech/jellybeans.vim) file to `.config/nvim/colors/jellybeans.vim`
+
+[Install Plug](https://github.com/junegunn/vim-plug#neovim)
+
+
+### Zsh
+
+[Install OhMyZsh](https://github.com/robbyrussell/oh-my-zsh)
+
+In home directory:
 
 `rm .zshrc`
 
