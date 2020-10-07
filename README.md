@@ -18,20 +18,22 @@ Install homebrew
 
 `brew install npm`
 
-`brew install vim` to use the system clipboard, see http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
+Install [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 `brew install heroku/brew/heroku`
 
 ### Vim, Zsh
 
-[Install Vundle](https://github.com/VundleVim/Vundle.vim)
+[Install Plug](https://github.com/junegunn/vim-plug#neovim)
 
 [Install OhMyZsh](https://github.com/robbyrussell/oh-my-zsh)
 
 
 In home directory:
 
-`ln dotfiles/vimrc .vimrc`
+`mkdir -p .config/nvim`
+
+`ln dotfiles/init.vim .config/nvim/init.vim`
 
 `rm .zshrc`
 
