@@ -6,15 +6,15 @@ Install homebrew
 
 `brew install git`
 
-`brew install zsh`
+`brew install zsh` / `sudo apt install zsh`
 
-`brew install ack`
+~~brew install ack~~
 
-`brew install ag`
+`brew install ag` / `sudo apt install silversearcher-ag`
 
-`brew install ctags`
+~~brew install ctags~~
 
-`brew install tree`
+`brew install tree` / `sudo apt install tree`
 
 `brew install npm`
 
