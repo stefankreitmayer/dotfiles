@@ -15,6 +15,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 Plug 'elixir-editors/vim-elixir'
+Plug 'luisjure/csound-vim'
 
 " Plug 'vim-ruby/vim-ruby'
 " Plug 'jparise/vim-graphql'
@@ -256,3 +257,9 @@ endfunction
 map <leader>e :call Eureka()<cr>
 
 :nohl
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Csound
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" folding see https://github.com/luisjure/csound-vim#folding
+autocmd Syntax csound normal zR
