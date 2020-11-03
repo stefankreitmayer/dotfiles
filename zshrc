@@ -1,7 +1,7 @@
 ZSH_DISABLE_COMPFIX=true
 #
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/stefan/.oh-my-zsh
+export ZSH=/home/pi/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -52,10 +52,11 @@ export UPDATE_ZSH_DAYS=200
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git git-prompt)
+# Note to self: No git plugin needed, since we are sourcing git-prompt manually, see below
 
 # User configuration
 
-export PATH="/Users/stefan/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/stefan/bin:/usr/local/sbin"
+export PATH="/home/pi/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/home/pi/bin:/usr/local/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -76,13 +77,16 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-source /usr/local/etc/bash_completion.d/git-prompt.sh
+# Sourcing git-prompt.sh manually instead of using any of the git plugins from ohmyzsh
+# Download the file from here https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+source /home/pi/git-prompt.sh
 precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWCOLORHINTS=1
+
 
 # history
 export HISTFILE=~/.histfile
@@ -100,24 +104,16 @@ export SAVEHIST=$HISTSIZE
 
 export EDITOR=/usr/bin/vim
 
-alias ez="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
-alias cdf="cd ~/.dotfiles"
 
-alias icem='ssh kreitmayer@icemserv.folkwang-uni.de'
-alias 'slowinternet1=sudo ipfw pipe 1 config bw 20KBytes/s'
-alias 'slowinternet2=sudo ipfw add 1 pipe 1 src-port 80'
-alias 'fastinternet=sudo ipfw delete 1'
 alias ll="ls -la"
 
-#alias vim="/usr/local/Cellar/vim/8.0.0559/bin/vim"
 alias vi="vim"
 
 alias g="git"
 alias ga="git add"
 alias gb="git branch -v"
 alias gs="git status"
-alias gc="echo Did you run your acceptance tests\? && git commit"
 alias gco="git checkout"
 alias gl="git log --oneline --graph --decorate --all"
 alias glp="git log --oneline --graph --decorate --all -p"
@@ -125,18 +121,13 @@ alias gaa="git add -A ."
 alias gap="git add -p"
 
 alias sr='screen -r'
-alias goals='cd ~/.goals && vim -p *'
-
-alias pdfconcat='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
-
-# ffmpeg -i ~/Library/Containers/com.apple.QuickTimePlayerX/Data/Library/Autosave\ Information/Unsaved\ QuickTime\ Player\ Document.qtpxcomposition/Screen\ Recording.mov -vf scale=1200:800 -filter:v "crop=2060:1606:0:396" -ss 3 -t 5  screen_recording_small.mov
 
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 
 function p() {cd $(find projects -maxdepth 3 -type d | selecta)}
 
 
-# export PATH="/Users/stefan/.rbenv/shims:${PATH}"
+# export PATH="/home/pi/.rbenv/shims:${PATH}"
 # source "/usr/local/Cellar/rbenv/1.1.0/libexec/../completions/rbenv.zsh"
 rbenv rehash 2>/dev/null
 rbenv() {
