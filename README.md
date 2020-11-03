@@ -45,6 +45,8 @@ In home directory:
 
 `ln dotfiles/zshrc .zshrc`
 
+Edit `.zshrc` to replace `/Users/stefan` as needed
+
 ### Github
 
 https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
