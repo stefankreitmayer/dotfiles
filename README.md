@@ -45,7 +45,9 @@ In home directory:
 
 `ln dotfiles/zshrc .zshrc`
 
-Edit `.zshrc` to replace `/Users/stefan` as needed
+`curl -o ~/git-prompt.sh https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh` (This file is sourced from .zshrc instead of using any of the git plugins from ohmyzsh)
+
+Edit `.zshrc` to replace `/home/pi` as needed
 
 ### Github
 
