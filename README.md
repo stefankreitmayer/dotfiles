@@ -51,7 +51,7 @@ In home directory:
 
 Edit `.zshrc` to replace `/home/pi` as needed
 
-`curl -o ~/git-prompt.sh https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh` (This file is sourced by `.zshrc` instead of using any of the git plugins from ohmyzsh)
+Download `https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh` into `~/git-prompt.sh` (This file is sourced by `.zshrc` instead of using any of the git plugins from ohmyzsh)
 
 ### Rails
 
